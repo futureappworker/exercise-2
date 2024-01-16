@@ -23,3 +23,19 @@ script 命令
 ```bash
 $ pnpm install
 ```
+
+### Heroku domain name
+
+https://exercise-2-d0ba6fc6cd4a.herokuapp.com/
+
+### POST 參數範例
+
+```
+POST https://exercise-2-d0ba6fc6cd4a.herokuapp.com/emails
+with JSON body:
+{
+  to: "myemail@example.com",
+  subject: "hi",
+  body: "Hello World!"
+}
+```
