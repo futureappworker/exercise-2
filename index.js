@@ -1,9 +1,18 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const cors = require('cors');
 const nodemailer = require('nodemailer');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+dotenv.config();
 
-app.use(express.json());
+app.use(cors());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -32,6 +41,7 @@ app.post('/emails', (req, res) => {
   };
   transporter.sendMail(data, (err) => {
     if (err) {
+      console.log('=== err: ', err);
       return res.status(500).json({
         message: '伺服器錯誤'
       });
